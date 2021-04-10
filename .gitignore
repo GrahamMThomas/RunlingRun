@@ -70,6 +70,13 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
+# Ignore Downloaded Packages
+/[Aa]ssets/Photon
+/[Aa]ssets/Photon.meta
+/[Aa]ssets/TextMesh Pro
+/[Aa]ssets/TextMesh Pro.meta
+
+
 # Windows specific
 # Windows thumbnail cache files
 Thumbs.db
