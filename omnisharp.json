@@ -1,0 +1,15 @@
+{
+    "RoslynExtensionsOptions": {
+        "EnableAnalyzersSupport": true,
+        "LocationPaths": [
+            "./NuGet/Analyzers"
+        ]
+    },
+    "FormattingOptions": {
+        "organizeImports": true,
+        "UseTabs": false,
+        "TabSize": 4,
+        "IndentationSize": 4,
+        "enableEditorConfigSupport": true
+    }
+}
