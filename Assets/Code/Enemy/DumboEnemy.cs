@@ -16,7 +16,7 @@ namespace RunlingRun.Enemy
 
         public override void Move()
         {
-            transform.Translate(_moveDirection * MoveSpeed * Time.deltaTime);
+            transform.Translate(_moveDirection * MoveSpeed * Time.deltaTime, Space.World);
         }
 
         private void OnCollisionEnter(Collision other)
@@ -26,6 +26,8 @@ namespace RunlingRun.Enemy
                 Vector3 bounceDir = Vector3.Reflect(_moveDirection, other.contacts[0].normal);
                 bounceDir.Set(bounceDir.x, 0, bounceDir.z); // Don't allow movement on Y axis
                 _moveDirection = bounceDir;
+                transform.transform.rotation = Quaternion.LookRotation(bounceDir, Vector3.up);
+                // gameObject.transform.eulerAngles = bounceDir;
             }
             else if (other.gameObject.CompareTag("PlayerCharacter"))
             {

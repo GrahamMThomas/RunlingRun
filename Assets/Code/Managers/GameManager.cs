@@ -27,7 +27,7 @@ namespace RunlingRun.Managers
             // Create Room Objects
             foreach (GameObject spawn in enemySpawnPoints)
             {
-                PhotonNetwork.InstantiateRoomObject("DummyEnemy", spawn.transform.position, Quaternion.identity);
+                PhotonNetwork.InstantiateRoomObject("Elon", spawn.transform.position, Quaternion.identity);
             }
 
             EndofMapPos = GameObject.Find("EndofMap").transform.position;

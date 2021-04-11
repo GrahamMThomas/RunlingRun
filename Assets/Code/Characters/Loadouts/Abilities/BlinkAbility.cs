@@ -9,12 +9,18 @@ namespace RunlingRun.Characters.Loadouts.Abilities
     public class BlinkAbility : Ability
     {
         private float _blinkDistance;
+        private MonoBehaviour _playerMono;
+        private Character _character;
+        private GameObject _blinkEffect;
 
         private const float MaxBlinkAheadDistance = 20f;
 
         public BlinkAbility(GameObject player, int level) : base(player, level)
         {
+            _character = player.GetComponent<Character>();
+            _playerMono = player.GetComponent<MonoBehaviour>();
             _blinkDistance = level;
+            _blinkEffect = (GameObject)Resources.Load("ParticleSystems/Blink");
         }
 
         public override IEnumerator Activate()
@@ -51,6 +57,10 @@ namespace RunlingRun.Characters.Loadouts.Abilities
                 else
                 {
                     navAgent.Warp(targetPos);
+                    GameObject fromEffect = Object.Instantiate(_blinkEffect, oldPos, Quaternion.Euler(90, 0, 0));
+                    Object.Destroy(fromEffect, 2f);
+                    GameObject toEffect = Object.Instantiate(_blinkEffect, targetPos, Quaternion.Euler(90, 0, 0));
+                    Object.Destroy(toEffect, 2f);
                 }
             }
             else
@@ -63,12 +73,11 @@ namespace RunlingRun.Characters.Loadouts.Abilities
 
         private bool IsBlinkCheating(Vector3 targetPos)
         {
-            Character character = _player.GetComponent<Character>();
 
             NavMeshPath path = new NavMeshPath();
-            NavMesh.CalculatePath(targetPos, character.MapGameManager.EndofMapPos, NavMesh.AllAreas, path);
+            NavMesh.CalculatePath(targetPos, _character.MapGameManager.EndofMapPos, NavMesh.AllAreas, path);
             float distanceToEnd = NavAgentHelpers.GetPathLength(path);
-            return distanceToEnd < (character.maxPlayerDistanceToEnd - MaxBlinkAheadDistance);
+            return distanceToEnd < (_character.maxPlayerDistanceToEnd - MaxBlinkAheadDistance);
         }
 
 
