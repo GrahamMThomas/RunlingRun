@@ -3,7 +3,22 @@ guid: 5b5cf472bf452534e944c77917971054
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SafeZone
+    second: {fileID: 2100000, guid: 760f97e64eb295846a448b01a736e22b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TerrainMat
+    second: {fileID: 2100000, guid: 51e4f704b667a1c46a94e8bb7395e89d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WalkableTerrain
+    second: {fileID: 2100000, guid: f9fdc95f5c7ed8245a696fac0b2c9243, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -45,7 +60,7 @@ ModelImporter:
     importLights: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
