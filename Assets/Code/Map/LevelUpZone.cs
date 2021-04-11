@@ -14,7 +14,7 @@ namespace RunlingRun.Map
             {
                 if (!gotPoints.Contains(other.gameObject.name))
                 {
-                    other.gameObject.GetComponent<Character>().Stats.LevelUp();
+                    other.gameObject.GetComponent<Character>().Loadout.LevelUp();
                     gotPoints.Add(other.gameObject.name);
                 }
             }

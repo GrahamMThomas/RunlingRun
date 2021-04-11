@@ -7,11 +7,9 @@ namespace RunlingRun.Enemy
     public class DumboEnemy : Enemy
     {
         private Vector3 _moveDirection;
-        private float _yPos;
 
         private void Awake()
         {
-            _yPos = transform.position.y;
             Vector3 randomDirection = new Vector3(Random.value, 0, Random.value);
             _moveDirection = randomDirection.normalized;
         }
@@ -26,7 +24,7 @@ namespace RunlingRun.Enemy
             if (other.gameObject.tag.Contains("Wall"))
             {
                 Vector3 bounceDir = Vector3.Reflect(_moveDirection, other.contacts[0].normal);
-                bounceDir.Set(bounceDir.x, 0, bounceDir.z);
+                bounceDir.Set(bounceDir.x, 0, bounceDir.z); // Don't allow movement on Y axis
                 _moveDirection = bounceDir;
             }
             else if (other.gameObject.CompareTag("PlayerCharacter"))

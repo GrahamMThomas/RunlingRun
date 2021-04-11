@@ -15,14 +15,14 @@ namespace RunlingRun.Managers
 
         void Update()
         {
-            CharacterLoadout stats = gameManager.CurrentPlayer.GetComponent<Character>().Stats;
+            CharacterLoadout stats = gameManager.CurrentPlayer.GetComponent<Character>().Loadout;
             statPointText.text = $"Available Points: {stats.GetAvailablePoints()}";
             moveSpeedStat.text = stats.moveSpeedStat.GetLevel().ToString();
         }
 
         public void UpdateMoveSpeed()
         {
-            CharacterLoadout stats = gameManager.CurrentPlayer.GetComponent<Character>().Stats;
+            CharacterLoadout stats = gameManager.CurrentPlayer.GetComponent<Character>().Loadout;
             if (stats.SpendPoint())
             {
                 stats.moveSpeedStat.Upgrade();

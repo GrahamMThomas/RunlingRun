@@ -2,6 +2,7 @@ namespace RunlingRun.GameMenu
 {
     using System.Collections;
     using System.Collections.Generic;
+    using System.Reflection;
     using Photon.Pun;
     using Photon.Realtime;
     using TMPro;
@@ -16,13 +17,24 @@ namespace RunlingRun.GameMenu
 
         private void Awake()
         {
+
             PhotonNetwork.AutomaticallySyncScene = true;
             PhotonNetwork.GameVersion = VersionName;
             PhotonNetwork.ConnectUsingSettings();
         }
 
+        void ClearConsole()
+        {
+            var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
+            var type = assembly.GetType("UnityEditor.LogEntries");
+            var method = type.GetMethod("Clear");
+            method.Invoke(new object(), null);
+        }
+
         public override void OnConnectedToMaster()
         {
+            ClearConsole();
+
             PhotonNetwork.JoinLobby(TypedLobby.Default);
             Debug.Log("Connected to Server!");
         }

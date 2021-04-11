@@ -1,6 +1,7 @@
 namespace RunlingRun.Characters.Loadouts
 {
     using System.Collections.Generic;
+    using Abilities;
     using Stats;
     using UnityEngine;
 
@@ -9,11 +10,16 @@ namespace RunlingRun.Characters.Loadouts
         private int availablePoints;
         public MoveSpeedStat moveSpeedStat;
 
-        public CharacterLoadout(string playerId)
+        public Ability Ability1;
+        public Ability Ability2;
+
+        public CharacterLoadout(GameObject player, string playerId)
         {
             Debug.Log($"Loading Stats for {playerId}");
             moveSpeedStat = new MoveSpeedStat();
             availablePoints = 0;
+            Ability1 = new BlinkAbility(player, 5);
+            Ability2 = new BlinkAbility(player, 0);
         }
 
         public void LevelUp()

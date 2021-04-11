@@ -10,6 +10,7 @@ namespace RunlingRun.Managers
     {
         public Transform SpawnPoint;
         public GameObject CurrentPlayer;
+        public Vector3 EndofMapPos;
 
         // Start is called before the first frame update
         void Start()
@@ -29,6 +30,7 @@ namespace RunlingRun.Managers
                 PhotonNetwork.InstantiateRoomObject("DummyEnemy", spawn.transform.position, Quaternion.identity);
             }
 
+            EndofMapPos = GameObject.Find("EndofMap").transform.position;
         }
     }
 }
