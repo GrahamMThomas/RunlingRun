@@ -84,6 +84,11 @@ namespace RunlingRun.Characters
 
         public void GetRekted()
         {
+            if (isDowned) { return; }
+            isDowned = true;
+            _agent.ResetPath();
+            _agent.isStopped = true;
+            GetComponent<Collider>().enabled = false;
             StartCoroutine(PlayDeathEffect());
         }
 
@@ -100,7 +105,8 @@ namespace RunlingRun.Characters
 
         public void Revive()
         {
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            _agent.isStopped = false;
+            _shader.SetFloat("PercentDisintegrated", 0f);
             GetComponent<Collider>().enabled = true;
             isDowned = false;
         }
