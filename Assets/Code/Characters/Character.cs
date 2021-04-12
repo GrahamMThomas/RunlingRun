@@ -15,6 +15,7 @@ namespace RunlingRun.Characters
     {
         [HideInInspector]
         public float MoveSpeed;
+        public GameObject model;
         public bool isDowned = false;
         [HideInInspector]
         public CharacterLoadout Loadout;
@@ -24,6 +25,7 @@ namespace RunlingRun.Characters
         public GameManager MapGameManager;
         public float maxPlayerDistanceToEnd = 10000;
         private NavMeshAgent _agent;
+        private Material _shader;
 
         // Event Management - End
 
@@ -35,6 +37,8 @@ namespace RunlingRun.Characters
             _agent = GetComponent<NavMeshAgent>();
             // TODO: Change out for network id of player
             Loadout = new CharacterLoadout(gameObject, "Player1");
+            _shader = model.GetComponentInChildren<SkinnedMeshRenderer>().material;
+
             ApplyLoadout();
         }
 
@@ -80,10 +84,18 @@ namespace RunlingRun.Characters
 
         public void GetRekted()
         {
-            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            GetComponent<Rigidbody>().velocity = Vector3.zero;
-            GetComponent<Collider>().enabled = false;
-            isDowned = true;
+            StartCoroutine(PlayDeathEffect());
+        }
+
+        public IEnumerator PlayDeathEffect()
+        {
+            float deadValue = 0f;
+            while (deadValue < 1f)
+            {
+                deadValue += 0.02f;
+                _shader.SetFloat("PercentDisintegrated", deadValue);
+                yield return new WaitForSeconds(0.05f);
+            }
         }
 
         public void Revive()

@@ -32,7 +32,6 @@ namespace RunlingRun.Enemy
             else if (other.gameObject.CompareTag("PlayerCharacter"))
             {
                 Kill(other.gameObject.GetComponent<Character>());
-                transform.localScale = new Vector3(2f, 2f, 2f);
             }
         }
 
