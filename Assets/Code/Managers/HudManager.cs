@@ -1,33 +1,23 @@
 namespace RunlingRun.Managers
 {
-    using System.Collections;
-    using System.Collections.Generic;
-    using RunlingRun.Characters;
-    using RunlingRun.Characters.Loadouts;
     using TMPro;
     using UnityEngine;
 
     public class HudManager : MonoBehaviour
     {
-        public GameManager gameManager;
         public TMP_Text statPointText;
         public TMP_Text moveSpeedStat;
 
-        void Update()
-        {
-            CharacterLoadout stats = gameManager.CurrentPlayer.GetComponent<Character>().Loadout;
-            statPointText.text = $"Available Points: {stats.GetAvailablePoints()}";
-            moveSpeedStat.text = stats.moveSpeedStat.GetLevel().ToString();
-        }
+        // --- Singleton Pattern
+        private static HudManager _instance = null;
+        public static HudManager Instance { get { return _instance; } }
 
-        public void UpdateMoveSpeed()
+        private void Awake()
         {
-            CharacterLoadout stats = gameManager.CurrentPlayer.GetComponent<Character>().Loadout;
-            if (stats.SpendPoint())
-            {
-                stats.moveSpeedStat.Upgrade();
-            }
+            if (_instance == null) { _instance = this; }
+            else if (_instance != this) { Destroy(gameObject); }
         }
+        // --- End Singleton Pattern
     }
 }
 

@@ -4,7 +4,6 @@ namespace RunlingRun.Managers
 
     public class CameraManager : MonoBehaviour
     {
-        public GameManager gameManager;
         public float zoom = 20f;
         private GameObject targetPlayer;
 
@@ -14,7 +13,7 @@ namespace RunlingRun.Managers
 
         void Start()
         {
-            targetPlayer = gameManager.GetComponent<GameManager>().CurrentPlayer;
+            targetPlayer = GameManager.Instance.CurrentPlayer;
             Offset = new Vector3(0, 1, 1);
 
             transform.position = GetTargetPosition();

@@ -1,46 +1,55 @@
-namespace RunlingRun.Characters.Loadouts.Abilities
+namespace RunlingRun.Character.Abilities
 {
     using System.Collections;
+    using RunlingRun.Managers;
     using RunlingRun.Player.Controllers;
     using RunlingRun.Utilities;
+    using Stats;
     using UnityEngine;
     using UnityEngine.AI;
 
     public class BlinkAbility : Ability
     {
-        private float _blinkDistance;
-        private MonoBehaviour _playerMono;
-        private Character _character;
-        private GameObject _blinkEffect;
+        private readonly float _blinkDistance;
+
+        private readonly MonoBehaviour _playerMono;
+        private readonly CharacterBehaviour _character;
+        private readonly GameObject _blinkEffect;
 
         private const float MaxBlinkAheadDistance = 20f;
 
-        public BlinkAbility(GameObject player, int level) : base(player, level)
+        public BlinkAbility(GameObject player, Stat[] attributes) : base(player, attributes)
         {
-            _character = player.GetComponent<Character>();
+            BlinkDistanceStat distanceStat = (BlinkDistanceStat)attributes[0];
+            BlinkChargesStat chargeStat = (BlinkChargesStat)attributes[0];
+
+            _blinkDistance = distanceStat.GetMaxBlinkDistance();
+            MaxCharges = chargeStat.GetMaxBlinkCharges();
+
+            _character = player.GetComponent<CharacterBehaviour>();
             _playerMono = player.GetComponent<MonoBehaviour>();
-            _blinkDistance = level;
+
             _blinkEffect = (GameObject)Resources.Load("ParticleSystems/Blink");
         }
 
         public override IEnumerator Activate()
         {
-            if (!IsUnlocked())
+            if (!IsUnlocked)
             {
                 Debug.Log("Ability is not Unlocked");
                 yield break;
             }
-            if (isActive)
+            if (IsActive)
             {
                 Debug.Log("Already using blink...");
                 yield break;
             }
 
-            isActive = true;
+            IsActive = true;
 
             Vector3? blinkLocation = null;
             MouseController mouseController = GameObject.Find("GameManager").GetComponent<MouseController>();
-            yield return mouseController.StartCoroutine(mouseController.WaitForMouseClickLocation((_blinkLocation) => blinkLocation = _blinkLocation));
+            yield return _playerMono.StartCoroutine(mouseController.WaitForMouseClickLocation((_blinkLocation) => blinkLocation = _blinkLocation));
 
             if (blinkLocation.HasValue)
             {
@@ -68,18 +77,16 @@ namespace RunlingRun.Characters.Loadouts.Abilities
                 Debug.Log("Cancelled Blink");
             }
 
-            isActive = false;
+            IsActive = false;
         }
 
         private bool IsBlinkCheating(Vector3 targetPos)
         {
 
             NavMeshPath path = new NavMeshPath();
-            NavMesh.CalculatePath(targetPos, _character.MapGameManager.EndofMapPos, NavMesh.AllAreas, path);
+            NavMesh.CalculatePath(targetPos, GameManager.Instance.EndofMapPos, NavMesh.AllAreas, path);
             float distanceToEnd = NavAgentHelpers.GetPathLength(path);
             return distanceToEnd < (_character.maxPlayerDistanceToEnd - MaxBlinkAheadDistance);
         }
-
-
     }
 }

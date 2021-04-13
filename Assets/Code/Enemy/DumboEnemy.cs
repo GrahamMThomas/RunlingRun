@@ -1,7 +1,7 @@
 namespace RunlingRun.Enemy
 {
     using System.Collections;
-    using Characters;
+    using Character;
     using UnityEngine;
 
     public class DumboEnemy : Enemy
@@ -31,7 +31,7 @@ namespace RunlingRun.Enemy
             }
             else if (other.gameObject.CompareTag("PlayerCharacter"))
             {
-                Kill(other.gameObject.GetComponent<Character>());
+                Kill(other.gameObject.GetComponent<CharacterBehaviour>());
             }
         }
 

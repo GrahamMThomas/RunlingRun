@@ -735,7 +735,7 @@
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "1986f7a70e664f24a477b4df4b098370",
     "m_Id": 0,
-    "m_DisplayName": "PercentDisintegrated",
+    "m_DisplayName": "Death/PercentDisintegrated",
     "m_SlotType": 1,
     "m_Hidden": false,
     "m_ShaderOutputName": "Out",

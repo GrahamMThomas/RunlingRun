@@ -2,7 +2,7 @@ namespace RunlingRun.Map
 {
     using System.Collections;
     using System.Collections.Generic;
-    using RunlingRun.Characters;
+    using RunlingRun.Character;
     using UnityEngine;
 
     public class LevelUpZone : MonoBehaviour
@@ -14,7 +14,7 @@ namespace RunlingRun.Map
             {
                 if (!gotPoints.Contains(other.gameObject.name))
                 {
-                    other.gameObject.GetComponent<Character>().Loadout.LevelUp();
+                    other.gameObject.GetComponent<CharacterLoadout>().LevelUp();
                     gotPoints.Add(other.gameObject.name);
                 }
             }
