@@ -16,6 +16,8 @@ namespace RunlingRun.Character.Stats
 
         public abstract void Apply(GameObject player);
 
+        // Serialization Stuff -----------------------------------
+
         [System.Serializable]
         public class SerializableStat
         {
@@ -32,8 +34,9 @@ namespace RunlingRun.Character.Stats
                         return new BlinkDistanceStat(Level);
                     case BlinkChargesStat.Name:
                         return new BlinkChargesStat(Level);
+                    default:
+                        throw new UnityException($"Can't find stat with name: {DisplayName}");
                 }
-                throw new UnityException($"Can't find stat with name: {DisplayName}");
             }
         }
 
@@ -44,7 +47,5 @@ namespace RunlingRun.Character.Stats
             sStat.Level = _level;
             return sStat;
         }
-
-
     }
 }

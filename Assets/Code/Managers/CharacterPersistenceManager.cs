@@ -93,7 +93,6 @@ namespace RunlingRun.Managers
             saveData.MoveSpeedStat = loadout.moveSpeedStat.ToSerializeable();
 
             // To eventually support multiple ability selections be character
-            Ability.SerializableAbility bob = loadout.Ability1.ToSerializeable();
             saveData.Abilities = new Ability.SerializableAbility[] { loadout.Ability1.ToSerializeable(), loadout.Ability2.ToSerializeable() };
             saveData.Ability1Index = 0;
             saveData.Ability2Index = 1;

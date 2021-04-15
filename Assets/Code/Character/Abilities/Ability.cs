@@ -22,7 +22,8 @@ namespace RunlingRun.Character.Abilities
         }
 
 
-        // Serialization Stuff
+        // Serialization Stuff ----------------------------------------------
+
         public static Ability Deserialize(GameObject player, SerializableAbility sAbility)
         {
             // Deserialize Related Stats
