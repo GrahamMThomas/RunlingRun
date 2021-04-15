@@ -6,6 +6,9 @@ namespace RunlingRun.Character.Stats
 
     public class MoveSpeedStat : Stat
     {
+        public const string Name = "Move Speed";
+        public override string DisplayName { get { return Name; } }
+
         public MoveSpeedStat(int level) : base(level)
         {
             _level = level;

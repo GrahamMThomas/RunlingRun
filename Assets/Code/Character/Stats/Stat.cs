@@ -2,14 +2,12 @@ namespace RunlingRun.Character.Stats
 {
     using UnityEngine;
 
-    [System.Serializable]
     public abstract class Stat
     {
-        public string DisplayName { get; }
-        //TODO public Image Icon;
+        public abstract string DisplayName { get; }
+        public int Level { get { return _level; } }
         protected int _level;
         public void Upgrade() { _level += 1; }
-        public int GetLevel() { return _level; }
 
         public Stat(int level)
         {
@@ -17,5 +15,36 @@ namespace RunlingRun.Character.Stats
         }
 
         public abstract void Apply(GameObject player);
+
+        [System.Serializable]
+        public class SerializableStat
+        {
+            public string DisplayName;
+            public int Level;
+
+            public Stat Deserialize()
+            {
+                switch (DisplayName)
+                {
+                    case MoveSpeedStat.Name:
+                        return new MoveSpeedStat(Level);
+                    case BlinkDistanceStat.Name:
+                        return new BlinkDistanceStat(Level);
+                    case BlinkChargesStat.Name:
+                        return new BlinkChargesStat(Level);
+                }
+                throw new UnityException($"Can't find stat with name: {DisplayName}");
+            }
+        }
+
+        public SerializableStat ToSerializeable()
+        {
+            SerializableStat sStat = new SerializableStat();
+            sStat.DisplayName = DisplayName;
+            sStat.Level = _level;
+            return sStat;
+        }
+
+
     }
 }

@@ -30,16 +30,6 @@ namespace RunlingRun.Character
             _keyboardController = GameManager.Instance.GetComponent<KeyboardController>();
         }
 
-        private void OnEnable()
-        {
-            moveSpeedStat.Apply(gameObject);
-            if (photonView.IsMine)
-            {
-                _keyboardController.UseAbility1 += Ability1.Activate;
-                _keyboardController.UseAbility2 += Ability2.Activate;
-            }
-        }
-
         private void OnDisable()
         {
             if (photonView.IsMine)
@@ -50,6 +40,16 @@ namespace RunlingRun.Character
         }
 
         // Functions --------------------------
+
+        public void Init()
+        {
+            moveSpeedStat.Apply(gameObject);
+            if (photonView.IsMine)
+            {
+                _keyboardController.UseAbility1 += Ability1.Activate;
+                _keyboardController.UseAbility2 += Ability2.Activate;
+            }
+        }
 
         public void LevelUp()
         {

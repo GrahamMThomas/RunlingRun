@@ -4,7 +4,9 @@ namespace RunlingRun.Character.Stats
 
     class BlinkDistanceStat : Stat
     {
-        public new string DisplayName = "Blink Distance";
+        public const string Name = "Blink Distance";
+
+        public override string DisplayName { get { return Name; } }
 
         public BlinkDistanceStat(int level) : base(level)
         {

@@ -4,7 +4,9 @@ namespace RunlingRun.Character.Stats
 
     class BlinkChargesStat : Stat
     {
-        public new string DisplayName = "Blink Charges";
+        public const string Name = "Blink Charges";
+
+        public override string DisplayName { get { return Name; } }
 
         public BlinkChargesStat(int level) : base(level)
         {

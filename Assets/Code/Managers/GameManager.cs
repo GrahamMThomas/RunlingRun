@@ -10,7 +10,6 @@ namespace RunlingRun.Managers
     public class GameManager : MonoBehaviour
     {
         public Transform SpawnPoint;
-        public GameObject CurrentPlayer;
         public Vector3 EndofMapPos;
 
         // --- Singleton Pattern
@@ -31,8 +30,8 @@ namespace RunlingRun.Managers
                 SceneManager.LoadScene("GameMenu");
             }
 
-            // Create Networked Object
-            CurrentPlayer = PhotonNetwork.Instantiate("Munch", SpawnPoint.position, Quaternion.identity);
+            // // Create Networked Object
+            // CurrentPlayer = PhotonNetwork.Instantiate("Munch", SpawnPoint.position, Quaternion.identity);
 
 
 

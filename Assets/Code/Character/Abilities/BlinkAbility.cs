@@ -10,8 +10,9 @@ namespace RunlingRun.Character.Abilities
 
     public class BlinkAbility : Ability
     {
+        public const string Name = "Blink Ability";
+        public override string DisplayName { get { return Name; } }
         private readonly float _blinkDistance;
-
         private readonly MonoBehaviour _playerMono;
         private readonly CharacterBehaviour _character;
         private readonly GameObject _blinkEffect;
@@ -20,8 +21,8 @@ namespace RunlingRun.Character.Abilities
 
         public BlinkAbility(GameObject player, Stat[] attributes) : base(player, attributes)
         {
-            BlinkDistanceStat distanceStat = (BlinkDistanceStat)attributes[0];
-            BlinkChargesStat chargeStat = (BlinkChargesStat)attributes[0];
+            BlinkDistanceStat distanceStat = (BlinkDistanceStat)Attributes[0];
+            BlinkChargesStat chargeStat = (BlinkChargesStat)Attributes[1];
 
             _blinkDistance = distanceStat.GetMaxBlinkDistance();
             MaxCharges = chargeStat.GetMaxBlinkCharges();
