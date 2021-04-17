@@ -93,7 +93,6 @@ namespace RunlingRun.Character
         public void Revive()
         {
             _agent.isStopped = false;
-            _shader.SetFloat("PercentDisintegrated", 0f);
             GetComponent<Collider>().enabled = true;
             isDowned = false;
         }
@@ -117,6 +116,11 @@ namespace RunlingRun.Character
             float deadValue = 0f;
             while (deadValue < 1f)
             {
+                if (!isDowned)
+                {
+                    _shader.SetFloat("PercentDisintegrated", 0f);
+                    yield break;
+                }
                 deadValue += 0.02f;
                 _shader.SetFloat("PercentDisintegrated", deadValue);
                 yield return new WaitForSeconds(0.05f);
