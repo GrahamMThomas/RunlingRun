@@ -9,11 +9,13 @@ namespace RunlingRun.Character.Abilities
         public abstract string DisplayName { get; }
         public bool IsActive = false;
         public bool IsUnlocked = true;
+        public float Cooldown;
         public int CurrentCharges = 1;
         public int MaxCharges = 1;
         public Stat[] Attributes;
         protected GameObject _player;
         public abstract IEnumerator Activate();
+        private bool _isCoolingDown = false;
 
         public Ability(GameObject player, Stat[] myAttributes)
         {
@@ -21,6 +23,25 @@ namespace RunlingRun.Character.Abilities
             _player = player;
         }
 
+        public void SpendAbilityCharge()
+        {
+            CurrentCharges -= 1;
+            if (!_isCoolingDown)
+            {
+                _player.GetComponent<MonoBehaviour>().StartCoroutine(StartCooldown());
+            }
+        }
+
+        private IEnumerator StartCooldown()
+        {
+            _isCoolingDown = true;
+            while (CurrentCharges < MaxCharges)
+            {
+                yield return new WaitForSeconds(Cooldown);
+                CurrentCharges += 1;
+            }
+            _isCoolingDown = false;
+        }
 
         // Serialization Stuff ----------------------------------------------
 

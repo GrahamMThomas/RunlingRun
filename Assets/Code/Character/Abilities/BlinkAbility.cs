@@ -26,6 +26,7 @@ namespace RunlingRun.Character.Abilities
 
             _blinkDistance = distanceStat.GetMaxBlinkDistance();
             MaxCharges = chargeStat.GetMaxBlinkCharges();
+            Cooldown = 5f;
 
             _character = player.GetComponent<CharacterBehaviour>();
             _playerMono = player.GetComponent<MonoBehaviour>();
@@ -43,6 +44,11 @@ namespace RunlingRun.Character.Abilities
             if (IsActive)
             {
                 Debug.Log("Already using blink...");
+                yield break;
+            }
+            if (CurrentCharges <= 0)
+            {
+                Debug.Log("On Cooldown...");
                 yield break;
             }
 
@@ -71,6 +77,7 @@ namespace RunlingRun.Character.Abilities
                     Object.Destroy(fromEffect, 2f);
                     GameObject toEffect = Object.Instantiate(_blinkEffect, targetPos, Quaternion.Euler(90, 0, 0));
                     Object.Destroy(toEffect, 2f);
+                    SpendAbilityCharge();
                 }
             }
             else

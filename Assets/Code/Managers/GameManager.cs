@@ -30,11 +30,6 @@ namespace RunlingRun.Managers
                 SceneManager.LoadScene("GameMenu");
             }
 
-            // // Create Networked Object
-            // CurrentPlayer = PhotonNetwork.Instantiate("Munch", SpawnPoint.position, Quaternion.identity);
-
-
-
             GameObject[] enemySpawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint/Dummy");
             // Create Room Objects
             foreach (GameObject spawn in enemySpawnPoints)
