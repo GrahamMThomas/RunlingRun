@@ -11,7 +11,7 @@ namespace RunlingRun.Character.Stats
 
         public MoveSpeedStat(int level) : base(level)
         {
-            _level = level;
+            _level = 7 + level;
         }
 
         public override void Apply(GameObject player)

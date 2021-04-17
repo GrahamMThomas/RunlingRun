@@ -10,7 +10,7 @@ namespace RunlingRun.Character.Stats
 
         public BlinkDistanceStat(int level) : base(level)
         {
-            _level = level;
+            _level = 8 + level;
         }
 
         public override void Apply(GameObject player)
