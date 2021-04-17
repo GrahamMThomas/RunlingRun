@@ -69,8 +69,7 @@ namespace RunlingRun.Managers
             // Update Character
             behaviour.Name = data.CharacterName;
             behaviour.Id = data.CharacterId;
-            behaviour.Level = data.CharacterLevel;
-            behaviour.Experience = data.CharacterExp;
+            behaviour.SetProgress(data.CharacterLevel, data.CharacterExp);
 
             // Update common stats
             loadout.SetAvailablePoints(data.AvailablePoints);

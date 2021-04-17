@@ -28,13 +28,19 @@ namespace RunlingRun.Character
         private NavMeshAgent _agent;
         private Material _shader;
 
+        public void SetProgress(int level, int experience)
+        {
+            Level = level;
+            Experience = experience;
+            SetExpNeededForNextLevel();
+        }
+
         // Unity Hooks --------------------
 
         private void Awake()
         {
             _agent = GetComponent<NavMeshAgent>();
             _shader = CharacterModel.GetComponentInChildren<SkinnedMeshRenderer>().material;
-            SetExpNeededForNextLevel();
         }
 
         private void Start()
@@ -62,9 +68,13 @@ namespace RunlingRun.Character
             maxPlayerDistanceToEnd = Math.Min(maxPlayerDistanceToEnd, distanceToEnd);
         }
 
+        private void OnDestroy()
+        {
+            CharacterPersistenceManager.Instance.SaveCharacter(gameObject);
+        }
+
         private void OnApplicationQuit()
         {
-            Debug.Log("Trying to save");
             CharacterPersistenceManager.Instance.SaveCharacter(gameObject);
         }
 
