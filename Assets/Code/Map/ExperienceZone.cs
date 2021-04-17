@@ -5,8 +5,9 @@ namespace RunlingRun.Map
     using RunlingRun.Character;
     using UnityEngine;
 
-    public class LevelUpZone : MonoBehaviour
+    public class ExperienceZone : MonoBehaviour
     {
+        public int ExpAwarded = 1;
         private readonly List<string> gotPoints = new List<string>();
         private void OnTriggerEnter(Collider other)
         {
@@ -14,7 +15,7 @@ namespace RunlingRun.Map
             {
                 if (!gotPoints.Contains(other.gameObject.name))
                 {
-                    other.gameObject.GetComponent<CharacterLoadout>().LevelUp();
+                    other.gameObject.GetComponent<CharacterBehaviour>().AwardExp(ExpAwarded);
                     gotPoints.Add(other.gameObject.name);
                 }
             }

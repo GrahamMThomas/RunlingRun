@@ -11,17 +11,19 @@ namespace RunlingRun.Character
     [RequireComponent(typeof(NavMeshAgent))]
     public class CharacterLoadout : MonoBehaviourPun
     {
-        private int _availablePoints;
         public MoveSpeedStat moveSpeedStat;
 
         public Ability Ability1;
         public Ability Ability2;
+
+        private int _availablePoints;
 
         [HideInInspector]
         public KeyboardController _keyboardController;
 
         // Getters ----------------------------
         public int GetAvailablePoints() { return _availablePoints; }
+        public void SetAvailablePoints(int points) { _availablePoints = points; }
 
         // Unity Hooks ------------------------
 
@@ -39,6 +41,11 @@ namespace RunlingRun.Character
             }
         }
 
+        public void LevelUp()
+        {
+            _availablePoints += 1;
+        }
+
         // Functions --------------------------
 
         public void Init()
@@ -49,21 +56,6 @@ namespace RunlingRun.Character
                 _keyboardController.UseAbility1 += Ability1.Activate;
                 _keyboardController.UseAbility2 += Ability2.Activate;
             }
-        }
-
-        public void LevelUp()
-        {
-            _availablePoints += 1;
-        }
-
-        public bool SpendPoint()
-        {
-            if (_availablePoints > 0)
-            {
-                _availablePoints -= 1;
-                return true;
-            }
-            return false;
         }
     }
 }

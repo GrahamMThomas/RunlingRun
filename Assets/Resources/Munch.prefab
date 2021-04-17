@@ -1066,6 +1066,8 @@ MonoBehaviour:
   Name: 
   Id: 
   Level: 0
+  Experience: 0
+  ExpNeededForLevel: 0
   isDowned: 0
   maxPlayerDistanceToEnd: 10000
   CharacterModel: {fileID: 3968420003541697660}

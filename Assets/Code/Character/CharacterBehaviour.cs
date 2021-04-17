@@ -9,12 +9,15 @@ namespace RunlingRun.Character
     using UnityEngine.AI;
 
     [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(CharacterLoadout))]
     public class CharacterBehaviour : MonoBehaviourPun
     {
         // Static
         public string Name;
         public string Id;
         public int Level;
+        public int Experience;
+        public int ExpNeededForLevel;
 
         // Dynamic 
         public bool isDowned = false;
@@ -31,6 +34,16 @@ namespace RunlingRun.Character
         {
             _agent = GetComponent<NavMeshAgent>();
             _shader = CharacterModel.GetComponentInChildren<SkinnedMeshRenderer>().material;
+            SetExpNeededForNextLevel();
+        }
+
+        private void Start()
+        {
+            // Ignore non-trigger colliders on all Safezones
+            foreach (GameObject safeZone in GameObject.FindGameObjectsWithTag("Wall/EnemyOnly"))
+            {
+                Physics.IgnoreCollision(safeZone.GetComponent<Collider>(), GetComponent<Collider>());
+            }
         }
 
         private void Update()
@@ -47,6 +60,12 @@ namespace RunlingRun.Character
             _agent.CalculatePath(GameManager.Instance.EndofMapPos, path);
             float distanceToEnd = NavAgentHelpers.GetPathLength(path);
             maxPlayerDistanceToEnd = Math.Min(maxPlayerDistanceToEnd, distanceToEnd);
+        }
+
+        private void OnApplicationQuit()
+        {
+            Debug.Log("Trying to save");
+            CharacterPersistenceManager.Instance.SaveCharacter(gameObject);
         }
 
         // Character Actions --------------------
@@ -69,6 +88,18 @@ namespace RunlingRun.Character
             isDowned = false;
         }
 
+        public void AwardExp(int amount)
+        {
+            Experience += amount;
+            while (Experience >= ExpNeededForLevel)
+            {
+                Experience -= ExpNeededForLevel;
+                Level += 1;
+                SetExpNeededForNextLevel();
+                GetComponent<CharacterLoadout>().LevelUp();
+            }
+        }
+
         // Helper Methods
 
         private IEnumerator PlayDeathEffect()
@@ -80,6 +111,11 @@ namespace RunlingRun.Character
                 _shader.SetFloat("PercentDisintegrated", deadValue);
                 yield return new WaitForSeconds(0.05f);
             }
+        }
+
+        private void SetExpNeededForNextLevel()
+        {
+            ExpNeededForLevel = (int)(Mathf.Pow(Level, 1f / 1.6f) * 4 + 4);
         }
     }
 }

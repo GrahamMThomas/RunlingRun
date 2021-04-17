@@ -701,6 +701,7 @@ GameObject:
   - component: {fileID: 202683535}
   - component: {fileID: 202683537}
   - component: {fileID: 202683536}
+  - component: {fileID: 202683538}
   m_Layer: 7
   m_Name: SafeZone_6
   m_TagString: Wall/EnemyOnly
@@ -748,6 +749,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &202683538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202683534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932cb0f6c426ae74aa8d2e08a9366f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpAwarded: 1
 --- !u!1 &211205612
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,6 +1235,7 @@ GameObject:
   - component: {fileID: 356402130}
   - component: {fileID: 356402132}
   - component: {fileID: 356402131}
+  - component: {fileID: 356402133}
   m_Layer: 7
   m_Name: SafeZone_10
   m_TagString: Wall/EnemyOnly
@@ -1268,6 +1283,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8, y: 7, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &356402133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356402129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932cb0f6c426ae74aa8d2e08a9366f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpAwarded: 1
 --- !u!1 &371424414
 GameObject:
   m_ObjectHideFlags: 0
@@ -1673,6 +1701,7 @@ GameObject:
   - component: {fileID: 527743235}
   - component: {fileID: 527743237}
   - component: {fileID: 527743236}
+  - component: {fileID: 527743238}
   m_Layer: 7
   m_Name: SafeZone_5
   m_TagString: Wall/EnemyOnly
@@ -1720,6 +1749,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &527743238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527743234}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932cb0f6c426ae74aa8d2e08a9366f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpAwarded: 1
 --- !u!1 &528697987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2002,6 +2044,7 @@ GameObject:
   - component: {fileID: 631029448}
   - component: {fileID: 631029450}
   - component: {fileID: 631029449}
+  - component: {fileID: 631029451}
   m_Layer: 7
   m_Name: SafeZone_11
   m_TagString: Wall/EnemyOnly
@@ -2049,6 +2092,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7, y: 7, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &631029451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631029447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932cb0f6c426ae74aa8d2e08a9366f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpAwarded: 1
 --- !u!1 &645132347
 GameObject:
   m_ObjectHideFlags: 0
@@ -2219,6 +2275,7 @@ GameObject:
   - component: {fileID: 729667491}
   - component: {fileID: 729667493}
   - component: {fileID: 729667492}
+  - component: {fileID: 729667494}
   m_Layer: 7
   m_Name: SafeZone_2
   m_TagString: Wall/EnemyOnly
@@ -2266,6 +2323,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 12, y: 12, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &729667494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729667490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932cb0f6c426ae74aa8d2e08a9366f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpAwarded: 1
 --- !u!1 &775055133
 GameObject:
   m_ObjectHideFlags: 0
@@ -3331,6 +3401,7 @@ GameObject:
   - component: {fileID: 1081464187}
   - component: {fileID: 1081464189}
   - component: {fileID: 1081464188}
+  - component: {fileID: 1081464190}
   m_Layer: 7
   m_Name: SafeZone_4
   m_TagString: Wall/EnemyOnly
@@ -3378,6 +3449,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.2, y: 10, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1081464190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081464186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932cb0f6c426ae74aa8d2e08a9366f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpAwarded: 2
 --- !u!1 &1091458697
 GameObject:
   m_ObjectHideFlags: 0
@@ -3419,6 +3503,7 @@ GameObject:
   - component: {fileID: 1100348605}
   - component: {fileID: 1100348607}
   - component: {fileID: 1100348606}
+  - component: {fileID: 1100348608}
   m_Layer: 7
   m_Name: SafeZone_13
   m_TagString: Wall/EnemyOnly
@@ -3466,6 +3551,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9, y: 10.5, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1100348608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100348604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932cb0f6c426ae74aa8d2e08a9366f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpAwarded: 4
 --- !u!1 &1119793111
 GameObject:
   m_ObjectHideFlags: 0
@@ -3507,6 +3605,7 @@ GameObject:
   - component: {fileID: 1134103824}
   - component: {fileID: 1134103826}
   - component: {fileID: 1134103825}
+  - component: {fileID: 1134103827}
   m_Layer: 7
   m_Name: SafeZone_8
   m_TagString: Wall/EnemyOnly
@@ -3554,6 +3653,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.2, y: 8, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1134103827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134103823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932cb0f6c426ae74aa8d2e08a9366f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpAwarded: 3
 --- !u!1 &1157960859
 GameObject:
   m_ObjectHideFlags: 0
@@ -3708,7 +3820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1217906319
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3779,6 +3891,7 @@ GameObject:
   - component: {fileID: 1238189445}
   - component: {fileID: 1238189447}
   - component: {fileID: 1238189446}
+  - component: {fileID: 1238189448}
   m_Layer: 7
   m_Name: SafeZone_3
   m_TagString: Wall/EnemyOnly
@@ -3826,6 +3939,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 12, y: 12, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1238189448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238189444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932cb0f6c426ae74aa8d2e08a9366f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpAwarded: 1
 --- !u!1 &1257815472
 GameObject:
   m_ObjectHideFlags: 0
@@ -4228,6 +4354,7 @@ GameObject:
   - component: {fileID: 1417114252}
   - component: {fileID: 1417114254}
   - component: {fileID: 1417114253}
+  - component: {fileID: 1417114255}
   m_Layer: 7
   m_Name: SafeZone_7
   m_TagString: Wall/EnemyOnly
@@ -4275,6 +4402,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1417114255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417114251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932cb0f6c426ae74aa8d2e08a9366f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpAwarded: 1
 --- !u!1 &1417636843
 GameObject:
   m_ObjectHideFlags: 0
@@ -4564,6 +4704,7 @@ GameObject:
   - component: {fileID: 1481662811}
   - component: {fileID: 1481662813}
   - component: {fileID: 1481662812}
+  - component: {fileID: 1481662814}
   m_Layer: 7
   m_Name: SafeZone_12
   m_TagString: Wall/EnemyOnly
@@ -4611,6 +4752,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7, y: 7.5, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1481662814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481662810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932cb0f6c426ae74aa8d2e08a9366f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpAwarded: 1
 --- !u!1 &1481964940
 GameObject:
   m_ObjectHideFlags: 0
@@ -4816,6 +4970,7 @@ GameObject:
   - component: {fileID: 1555700269}
   - component: {fileID: 1555700268}
   - component: {fileID: 1555700267}
+  - component: {fileID: 1555700270}
   m_Layer: 7
   m_Name: SafeZone_0
   m_TagString: Wall/EnemyOnly
@@ -4863,6 +5018,19 @@ Transform:
   m_Father: {fileID: 1467299902}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1555700270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1555700266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932cb0f6c426ae74aa8d2e08a9366f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpAwarded: 1
 --- !u!1 &1560707655
 GameObject:
   m_ObjectHideFlags: 0
@@ -5615,6 +5783,7 @@ GameObject:
   - component: {fileID: 1900034457}
   - component: {fileID: 1900034459}
   - component: {fileID: 1900034458}
+  - component: {fileID: 1900034460}
   m_Layer: 7
   m_Name: SafeZone_9
   m_TagString: Wall/EnemyOnly
@@ -5662,6 +5831,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8, y: 8, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1900034460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900034456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932cb0f6c426ae74aa8d2e08a9366f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpAwarded: 1
 --- !u!1 &1914815174
 GameObject:
   m_ObjectHideFlags: 0
@@ -5673,6 +5855,7 @@ GameObject:
   - component: {fileID: 1914815177}
   - component: {fileID: 1914815176}
   - component: {fileID: 1914815175}
+  - component: {fileID: 1914815178}
   m_Layer: 7
   m_Name: SafeZone_1
   m_TagString: Wall/EnemyOnly
@@ -5720,6 +5903,19 @@ Transform:
   m_Father: {fileID: 1467299902}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1914815178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1914815174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 932cb0f6c426ae74aa8d2e08a9366f6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ExpAwarded: 1
 --- !u!1 &1931981611
 GameObject:
   m_ObjectHideFlags: 0
@@ -5875,9 +6071,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -17}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2021944233
 MonoBehaviour:
@@ -5963,7 +6159,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}

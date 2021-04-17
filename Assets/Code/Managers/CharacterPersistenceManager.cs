@@ -34,6 +34,8 @@ namespace RunlingRun.Managers
             if (type == CharacterTypes.Munch)
             {
                 behaviour.Name = name;
+                behaviour.Level = 1;
+                behaviour.Experience = 0;
                 behaviour.Id = System.Guid.NewGuid().ToString();
                 loadout.moveSpeedStat = new MoveSpeedStat(1);
                 BlinkDistanceStat blinkDistanceStat = new BlinkDistanceStat(1);
@@ -67,8 +69,11 @@ namespace RunlingRun.Managers
             // Update Character
             behaviour.Name = data.CharacterName;
             behaviour.Id = data.CharacterId;
+            behaviour.Level = data.CharacterLevel;
+            behaviour.Experience = data.CharacterExp;
 
             // Update common stats
+            loadout.SetAvailablePoints(data.AvailablePoints);
             loadout.moveSpeedStat = (MoveSpeedStat)data.MoveSpeedStat.Deserialize();
             loadout.moveSpeedStat.Apply(character);
 
@@ -88,6 +93,9 @@ namespace RunlingRun.Managers
             // Save Character
             saveData.CharacterName = behaviour.Name;
             saveData.CharacterId = behaviour.Id;
+            saveData.CharacterLevel = behaviour.Level;
+            saveData.CharacterExp = behaviour.Experience;
+            saveData.AvailablePoints = loadout.GetAvailablePoints();
 
             // Save common stats
             saveData.MoveSpeedStat = loadout.moveSpeedStat.ToSerializeable();
@@ -113,6 +121,7 @@ namespace RunlingRun.Managers
             public string CharacterName;
             public string CharacterId;
             public int CharacterLevel;
+            public int CharacterExp;
             public CharacterTypes CharacterType;
 
             // Loadout Stuff
