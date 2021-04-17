@@ -17,6 +17,7 @@ namespace RunlingRun.Managers
         public GameObject CharListContainer;
         public GameObject MunchCharPanelPrefab;
         public GameObject SpawnArea;
+        public GameObject CharInfoPanel;
 
         // --- Singleton Pattern
         private static CharacterSelectionManager _instance = null;
@@ -55,12 +56,10 @@ namespace RunlingRun.Managers
 
         public void SpawnPlayer(CharacterData data)
         {
-            // Create Networked Object
             string charType = Enum.GetName(typeof(CharacterTypes), data.CharacterType);
             CurrentPlayer = PhotonNetwork.Instantiate(charType, GetSpawnPoint(), Quaternion.identity);
             CharacterPersistenceManager.Instance.ApplyCharacterDataToObject(CurrentPlayer, data);
-            CameraManager.Instance.StartTracking();
-            CloseCharacterScreens();
+            CharacterSpawnedActions();
         }
 
         public void ActivateCharacterSelectionScreen()
@@ -75,14 +74,18 @@ namespace RunlingRun.Managers
 
         public void CreateNewCharacter(int charType)
         {
-
             CurrentPlayer = PhotonNetwork.Instantiate(((CharacterTypes)charType).ToString(), GetSpawnPoint(), Quaternion.identity);
 
             CharacterPersistenceManager.Instance.ApplyNewCharacterStats(CurrentPlayer, CharacterNameInput.text, (CharacterTypes)charType);
-            NewCharacterPanel.SetActive(false);
-            CharListPanel.SetActive(false);
-            CameraManager.Instance.StartTracking();
             CharacterPersistenceManager.Instance.SaveCharacter(CurrentPlayer);
+            CharacterSpawnedActions();
+        }
+
+        public void CharacterSpawnedActions()
+        {
+            CameraManager.Instance.StartTracking();
+            CharInfoPanel.SetActive(true);
+            UI.CharacterInfo.Instance.SetCharInfo(CurrentPlayer);
             CloseCharacterScreens();
         }
 

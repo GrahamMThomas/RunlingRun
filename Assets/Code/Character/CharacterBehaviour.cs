@@ -4,6 +4,7 @@ namespace RunlingRun.Character
     using System.Collections;
     using Photon.Pun;
     using RunlingRun.Managers;
+    using RunlingRun.UI;
     using RunlingRun.Utilities;
     using UnityEngine;
     using UnityEngine.AI;
@@ -107,6 +108,7 @@ namespace RunlingRun.Character
                 SetExpNeededForNextLevel();
                 GetComponent<CharacterLoadout>().LevelUp();
             }
+            RunlingRun.UI.CharacterInfo.Instance.UpdateExpBar(gameObject);
         }
 
         // Helper Methods

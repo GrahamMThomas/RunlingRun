@@ -1,11 +1,12 @@
 namespace RunlingRun.UI
 {
-    using RunlingRun.Managers.Persistence;
+    using Character;
+    using Photon.Pun;
     using TMPro;
     using UnityEngine;
     using UnityEngine.UI;
 
-    public class CharacterInfo : MonoBehaviour
+    public class CharacterInfo : MonoBehaviourPun
     {
         public TMP_Text UsernameText;
         public TMP_Text PlayerNameText;
@@ -23,9 +24,21 @@ namespace RunlingRun.UI
         }
         // --- End Singleton Pattern
 
-        public void SetCharInfo(CharacterData data)
+        public void SetCharInfo(GameObject player)
         {
+            gameObject.SetActive(true);
+            CharacterBehaviour behav = player.GetComponent<CharacterBehaviour>();
+            UsernameText.text = PhotonNetwork.NickName;
+            PlayerNameText.text = behav.Name;
+            LevelText.text = $"Lv.{behav.Level}";
+            UpdateExpBar(player);
+        }
 
+        public void UpdateExpBar(GameObject player)
+        {
+            CharacterBehaviour behav = player.GetComponent<CharacterBehaviour>();
+            LevelText.text = $"Lv.{behav.Level}";
+            ExpBar.transform.localScale = new Vector3(behav.Experience / (float)behav.ExpNeededForLevel, 1, 1);
         }
     }
 }
