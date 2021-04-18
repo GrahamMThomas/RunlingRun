@@ -10,6 +10,7 @@ namespace RunlingRun.Character.Abilities
         public bool IsActive = false;
         public bool IsUnlocked = true;
         public float Cooldown;
+        public float CooldownTimer;
         public int CurrentCharges = 1;
         public int MaxCharges = 1;
         public Stat[] Attributes;
@@ -37,7 +38,13 @@ namespace RunlingRun.Character.Abilities
             _isCoolingDown = true;
             while (CurrentCharges < MaxCharges)
             {
-                yield return new WaitForSeconds(Cooldown);
+                CooldownTimer = Cooldown;
+                while (CooldownTimer > 0)
+                {
+                    float step = 0.25f;
+                    CooldownTimer -= step;
+                    yield return new WaitForSeconds(step);
+                }
                 CurrentCharges += 1;
             }
             _isCoolingDown = false;

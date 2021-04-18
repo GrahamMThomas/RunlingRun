@@ -108,7 +108,6 @@ namespace RunlingRun.Character
                 SetExpNeededForNextLevel();
                 GetComponent<CharacterLoadout>().LevelUp();
             }
-            RunlingRun.UI.CharacterInfo.Instance.UpdateExpBar(gameObject);
         }
 
         // Helper Methods

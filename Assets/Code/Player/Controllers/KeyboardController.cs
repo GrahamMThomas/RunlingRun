@@ -11,11 +11,11 @@ namespace RunlingRun.Player.Controllers
         // private MouseController _mouseController;
 
         // Ability 1
-        private const KeyCode _Ability1Key = KeyCode.E;
+        private const KeyCode _Ability1Key = KeyCode.Q;
         public event Func<IEnumerator> UseAbility1;
 
         // Ability 2
-        private const KeyCode _Ability2Key = KeyCode.Q;
+        private const KeyCode _Ability2Key = KeyCode.E;
         public event Func<IEnumerator> UseAbility2;
 
         // private void Awake()
