@@ -1,5 +1,6 @@
 namespace RunlingRun.Character.Stats
 {
+    using RunlingRun.Character.Abilities;
     using UnityEngine;
     using UnityEngine.AI;
 
@@ -19,7 +20,13 @@ namespace RunlingRun.Character.Stats
 
         public override void Apply(GameObject player)
         {
+            _trackedPlayer = player;
             player.GetComponent<NavMeshAgent>().speed = _baseMoveSpeed + (_moveSpeedPerLevel * _level);
+        }
+
+        public override void Apply(Ability ability)
+        {
+            // pass
         }
     }
 }

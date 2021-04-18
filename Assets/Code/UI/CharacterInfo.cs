@@ -38,8 +38,9 @@ namespace RunlingRun.UI
             CharacterLoadout loadout = player.GetComponent<CharacterLoadout>();
 
             UpdateExpBar(behav);
-            Ability1.CooldownImage.fillAmount = loadout.Ability1.CooldownTimer / loadout.Ability1.Cooldown;
-            Ability2.CooldownImage.fillAmount = loadout.Ability2.CooldownTimer / loadout.Ability2.Cooldown;
+            Ability1.CooldownImage.fillAmount = GetPercentCooldownLeft(loadout.Ability1);
+            Ability2.CooldownImage.fillAmount = GetPercentCooldownLeft(loadout.Ability2);
+
 
             // Set Charges
             SetChargesText(Ability1, loadout.Ability1.CurrentCharges);
@@ -84,6 +85,18 @@ namespace RunlingRun.UI
             else
             {
                 indicator.ChargesText.text = chargeNum.ToString();
+            }
+        }
+
+        private float GetPercentCooldownLeft(Ability ability)
+        {
+            if (ability.CurrentCharges <= 0)
+            {
+                return ability.CooldownTimer / ability.Cooldown;
+            }
+            else
+            {
+                return 0f;
             }
         }
     }

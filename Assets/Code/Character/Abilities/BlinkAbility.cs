@@ -12,7 +12,7 @@ namespace RunlingRun.Character.Abilities
     {
         public const string Name = "Blink Ability";
         public override string DisplayName { get { return Name; } }
-        private readonly float _blinkDistance;
+        public float BlinkDistance;
         private readonly MonoBehaviour _playerMono;
         private readonly CharacterBehaviour _character;
         private readonly GameObject _blinkEffect;
@@ -24,8 +24,8 @@ namespace RunlingRun.Character.Abilities
             BlinkDistanceStat distanceStat = (BlinkDistanceStat)Attributes[0];
             BlinkChargesStat chargeStat = (BlinkChargesStat)Attributes[1];
 
-            _blinkDistance = distanceStat.GetMaxBlinkDistance();
-            MaxCharges = chargeStat.GetMaxBlinkCharges();
+            chargeStat.Apply(this);
+            distanceStat.Apply(this);
             Cooldown = 5f;
 
             _character = player.GetComponent<CharacterBehaviour>();
@@ -64,7 +64,7 @@ namespace RunlingRun.Character.Abilities
                 NavMeshAgent navAgent = _player.GetComponent<NavMeshAgent>();
                 Vector3 oldPos = _player.transform.position;
                 Vector3 direction = blinkLocation.Value - oldPos;
-                Vector3 relativeMovement = Vector3.ClampMagnitude(direction, _blinkDistance);
+                Vector3 relativeMovement = Vector3.ClampMagnitude(direction, BlinkDistance);
                 Vector3 targetPos = _player.transform.position + relativeMovement;
                 if (IsBlinkCheating(targetPos))
                 {

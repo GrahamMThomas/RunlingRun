@@ -1083,6 +1083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b0904ab694c9ac419b695d4246840d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AvailablePoints: 0
   _keyboardController: {fileID: 0}
 --- !u!1 &5130191206093985142
 GameObject:

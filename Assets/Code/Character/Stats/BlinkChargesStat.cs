@@ -1,5 +1,6 @@
 namespace RunlingRun.Character.Stats
 {
+    using RunlingRun.Character.Abilities;
     using UnityEngine;
 
     class BlinkChargesStat : Stat
@@ -15,12 +16,14 @@ namespace RunlingRun.Character.Stats
 
         public override void Apply(GameObject player)
         {
-            //pass
+            // pass
         }
 
-        public int GetMaxBlinkCharges()
+        public override void Apply(Ability ability)
         {
-            return _level;
+            _trackedAbility = ability;
+            ability.MaxCharges = Level;
+            ability.CurrentCharges = Level;
         }
     }
 }
