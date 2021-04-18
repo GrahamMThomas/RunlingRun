@@ -11,7 +11,7 @@ namespace RunlingRun.UI
     {
         public TMP_Text StatName;
         public TMP_Text LevelText;
-        public TMP_Text PointsNeeded;
+        public TMP_Text Cost;
         public Button UpgradeButton;
 
         private Stat _trackingStat;
@@ -23,7 +23,7 @@ namespace RunlingRun.UI
 
             _trackingStat = stat;
             StatName.text = stat.DisplayName;
-            PointsNeeded.text = stat.Cost.ToString();
+            Cost.text = stat.Cost.ToString();
 
             UpgradeButton.onClick.AddListener(() => UpgradeStat());
             UpdateToReflectChanges();

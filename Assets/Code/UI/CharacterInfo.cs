@@ -41,7 +41,6 @@ namespace RunlingRun.UI
             Ability1.CooldownImage.fillAmount = GetPercentCooldownLeft(loadout.Ability1);
             Ability2.CooldownImage.fillAmount = GetPercentCooldownLeft(loadout.Ability2);
 
-
             // Set Charges
             SetChargesText(Ability1, loadout.Ability1.CurrentCharges);
             SetChargesText(Ability2, loadout.Ability2.CurrentCharges);

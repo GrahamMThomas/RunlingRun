@@ -12,6 +12,7 @@ namespace RunlingRun.Character.Stats
         public BlinkChargesStat(int level) : base(level)
         {
             _level = level;
+            Cost = 3;
         }
 
         public override void Apply(GameObject player)

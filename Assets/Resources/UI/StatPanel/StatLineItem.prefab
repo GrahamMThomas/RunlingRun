@@ -308,7 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StatName: {fileID: 6507820321841703014}
   LevelText: {fileID: 6507820320940692275}
-  PointsNeeded: {fileID: 6507820322031575972}
+  Cost: {fileID: 6507820322031575972}
   UpgradeButton: {fileID: 6507820320518403408}
 --- !u!1 &6507820321841703012
 GameObject:
@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 6507820322031575975}
   - component: {fileID: 6507820322031575972}
   m_Layer: 5
-  m_Name: PointsNeeded
+  m_Name: CostText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
