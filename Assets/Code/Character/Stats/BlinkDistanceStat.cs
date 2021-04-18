@@ -10,7 +10,7 @@ namespace RunlingRun.Character.Stats
 
         public BlinkDistanceStat(int level) : base(level)
         {
-            _level = 8 + level;
+            _level = level;
         }
 
         public override void Apply(GameObject player)
@@ -18,9 +18,9 @@ namespace RunlingRun.Character.Stats
             //pass
         }
 
-        public int GetMaxBlinkDistance()
+        public float GetMaxBlinkDistance()
         {
-            return _level;
+            return (Mathf.Pow(_level, 0.5f) * 2) + 2;
         }
     }
 }

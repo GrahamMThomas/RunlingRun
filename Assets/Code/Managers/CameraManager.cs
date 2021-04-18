@@ -27,12 +27,13 @@ namespace RunlingRun.Managers
         void Start()
         {
             Offset = new Vector3(0, 1, 1);
+            CharacterSelectionManager.Instance.OnCharacterInstantiate += StartTracking;
         }
 
-        public void StartTracking()
-        {
-            targetPlayer = CharacterSelectionManager.Instance.CurrentPlayer;
 
+        public void StartTracking(GameObject player)
+        {
+            targetPlayer = player;
             transform.position = GetTargetPosition();
             transform.LookAt(targetPlayer.transform);
             IsTracking = true;
@@ -51,7 +52,6 @@ namespace RunlingRun.Managers
                 return;
             }
 
-            // update position
             Vector3 targetPosition = GetTargetPosition();
             transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, SmoothTime);
         }
@@ -59,6 +59,11 @@ namespace RunlingRun.Managers
         private Vector3 GetTargetPosition()
         {
             return targetPlayer.transform.position + Offset * Zoom;
+        }
+
+        private void OnDisable()
+        {
+            CharacterSelectionManager.Instance.OnCharacterInstantiate -= StartTracking;
         }
     }
 }

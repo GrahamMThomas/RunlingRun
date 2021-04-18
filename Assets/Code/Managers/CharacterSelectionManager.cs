@@ -19,6 +19,8 @@ namespace RunlingRun.Managers
         public GameObject SpawnArea;
         public GameObject CharInfoPanel;
 
+        public event Action<GameObject> OnCharacterInstantiate;
+
         // --- Singleton Pattern
         private static CharacterSelectionManager _instance = null;
         public static CharacterSelectionManager Instance { get { return _instance; } }
@@ -83,10 +85,10 @@ namespace RunlingRun.Managers
 
         public void CharacterSpawnedActions()
         {
-            CameraManager.Instance.StartTracking();
             CharInfoPanel.SetActive(true);
             UI.CharacterInfo.Instance.SetCharInfo(CurrentPlayer);
             CloseCharacterScreens();
+            OnCharacterInstantiate(CurrentPlayer);
         }
 
         private void CloseCharacterScreens()

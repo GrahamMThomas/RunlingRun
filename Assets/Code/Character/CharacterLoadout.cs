@@ -1,5 +1,6 @@
 namespace RunlingRun.Character
 {
+    using System;
     using Abilities;
     using Photon.Pun;
     using RunlingRun.Managers;
@@ -11,6 +12,7 @@ namespace RunlingRun.Character
     [RequireComponent(typeof(NavMeshAgent))]
     public class CharacterLoadout : MonoBehaviourPun
     {
+        public event Action OnLevelUp;
         public MoveSpeedStat moveSpeedStat;
 
         public Ability Ability1;
@@ -44,6 +46,7 @@ namespace RunlingRun.Character
         public void LevelUp()
         {
             _availablePoints += 1;
+            OnLevelUp();
         }
 
         // Functions --------------------------

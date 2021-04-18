@@ -1,5 +1,6 @@
 namespace RunlingRun.Character.Stats
 {
+    using System;
     using UnityEngine;
 
     public abstract class Stat
@@ -7,7 +8,10 @@ namespace RunlingRun.Character.Stats
         public abstract string DisplayName { get; }
         public int Level { get { return _level; } }
         protected int _level;
-        public void Upgrade() { _level += 1; }
+        public int PointsNeededForUpgrade = 1;
+        public event Action OnStatUpgrade;
+
+        public void Upgrade() { _level += 1; OnStatUpgrade(); }
 
         public Stat(int level)
         {
