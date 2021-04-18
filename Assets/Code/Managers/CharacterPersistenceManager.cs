@@ -72,7 +72,7 @@ namespace RunlingRun.Managers
             behaviour.SetProgress(data.CharacterLevel, data.CharacterExp);
 
             // Update common stats
-            loadout.SetAvailablePoints(data.AvailablePoints);
+            loadout.AvailablePoints = data.AvailablePoints;
             loadout.moveSpeedStat = (MoveSpeedStat)data.MoveSpeedStat.Deserialize();
             loadout.moveSpeedStat.Apply(character);
 
@@ -94,7 +94,7 @@ namespace RunlingRun.Managers
             saveData.CharacterId = behaviour.Id;
             saveData.CharacterLevel = behaviour.Level;
             saveData.CharacterExp = behaviour.Experience;
-            saveData.AvailablePoints = loadout.GetAvailablePoints();
+            saveData.AvailablePoints = loadout.AvailablePoints;
 
             // Save common stats
             saveData.MoveSpeedStat = loadout.moveSpeedStat.ToSerializeable();

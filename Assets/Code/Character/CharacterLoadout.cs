@@ -13,19 +13,17 @@ namespace RunlingRun.Character
     public class CharacterLoadout : MonoBehaviourPun
     {
         public event Action OnLevelUp;
+        public event Action OnSpendPoints;
+
         public MoveSpeedStat moveSpeedStat;
 
         public Ability Ability1;
         public Ability Ability2;
 
-        private int _availablePoints;
+        public int AvailablePoints;
 
         [HideInInspector]
         public KeyboardController _keyboardController;
-
-        // Getters ----------------------------
-        public int GetAvailablePoints() { return _availablePoints; }
-        public void SetAvailablePoints(int points) { _availablePoints = points; }
 
         // Unity Hooks ------------------------
 
@@ -45,11 +43,17 @@ namespace RunlingRun.Character
 
         public void LevelUp()
         {
-            _availablePoints += 1;
+            AvailablePoints += 1;
             OnLevelUp();
         }
 
         // Functions --------------------------
+
+        public void SpendPoints(int amount)
+        {
+            AvailablePoints -= amount;
+            OnSpendPoints();
+        }
 
         public void Init()
         {

@@ -14,37 +14,36 @@ namespace RunlingRun.UI
         public TMP_Text PointsNeeded;
         public Button UpgradeButton;
 
-        private Stat trackingStat;
+        private Stat _trackingStat;
+        private CharacterLoadout _loadout;
 
         public void SetTracking(Stat stat)
         {
-            trackingStat = stat;
+            _loadout = CharacterSelectionManager.Instance.CurrentPlayer.GetComponent<CharacterLoadout>();
+
+            _trackingStat = stat;
             StatName.text = stat.DisplayName;
-            PointsNeeded.text = stat.PointsNeededForUpgrade.ToString();
+            PointsNeeded.text = stat.Cost.ToString();
 
-            UpgradeButton.onClick.AddListener(() => stat.Upgrade());
-            UpdateOnPointChange();
-            UpdateOnUpgrade();
+            UpgradeButton.onClick.AddListener(() => UpgradeStat());
+            UpdateToReflectChanges();
 
-            CharacterSelectionManager.Instance.CurrentPlayer.GetComponent<CharacterLoadout>().OnLevelUp += UpdateOnPointChange;
-            stat.OnStatUpgrade += UpdateOnUpgrade;
+            _loadout.OnLevelUp += UpdateToReflectChanges;
+            _loadout.OnSpendPoints += UpdateToReflectChanges;
+            _trackingStat.OnStatUpgrade += UpdateToReflectChanges;
         }
 
-        public void UpdateOnUpgrade()
+        public void UpdateToReflectChanges()
         {
-            LevelText.text = $"Lv.{trackingStat.Level}";
+            LevelText.text = $"Lv.{_trackingStat.Level}";
+            UpgradeButton.interactable = _loadout.AvailablePoints >= _trackingStat.Cost;
         }
 
-        public void UpdateOnPointChange()
+        public void UpgradeStat()
         {
-            CharacterLoadout loadout = CharacterSelectionManager.Instance.CurrentPlayer.GetComponent<CharacterLoadout>();
-            UpgradeButton.interactable = loadout.GetAvailablePoints() >= trackingStat.PointsNeededForUpgrade;
-        }
-
-        private void OnDisable()
-        {
-            trackingStat.OnStatUpgrade -= UpdateOnUpgrade;
-            CharacterSelectionManager.Instance.CurrentPlayer.GetComponent<CharacterLoadout>().OnLevelUp -= UpdateOnPointChange;
+            // CharacterSelectionManager.Instance.CurrentPlayer.GetComponent<CharacterLoadout>()
+            _loadout.SpendPoints(_trackingStat.Cost);
+            _trackingStat.Upgrade();
         }
     }
 }

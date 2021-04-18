@@ -37,6 +37,7 @@ namespace RunlingRun.UI
                 GameObject statLine = Instantiate((GameObject)Resources.Load("UI/StatPanel/StatLineItem"), Ability2Stats.transform);
                 statLine.GetComponent<StatLineItem>().SetTracking(stat);
             }
+            Panel.SetActive(true);
             // Workaround because Verticle layout gorup not working
             Panel.GetComponent<VerticalLayoutGroup>().enabled = false;
             StartCoroutine(ReEnableThing());
@@ -46,6 +47,7 @@ namespace RunlingRun.UI
         {
             yield return new WaitForEndOfFrame();
             Panel.GetComponent<VerticalLayoutGroup>().enabled = true;
+            Panel.SetActive(false);
         }
 
         public void ToggleStatPanel()
