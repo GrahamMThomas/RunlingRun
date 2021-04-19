@@ -24,6 +24,9 @@ namespace RunlingRun.Character
         public bool isDowned = false;
         public float maxPlayerDistanceToEnd = 10000;
 
+        // Events
+        public event Action OnRevive;
+
         // References
         public GameObject CharacterModel;
         private NavMeshAgent _agent;
@@ -89,6 +92,8 @@ namespace RunlingRun.Character
             _agent.isStopped = true;
             GetComponent<Collider>().enabled = false;
             StartCoroutine(PlayDeathEffect());
+            GameObject deathMarker = PhotonNetwork.InstantiateRoomObject("DeathMarker", gameObject.transform.position, Quaternion.identity);
+            deathMarker.GetComponent<DeathMarker.DeathMarker>().SetCharacter(this);
         }
 
         public void Revive()
@@ -96,6 +101,8 @@ namespace RunlingRun.Character
             _agent.isStopped = false;
             GetComponent<Collider>().enabled = true;
             isDowned = false;
+            _shader.SetFloat("PercentDisintegrated", 0f);
+            OnRevive?.Invoke();
         }
 
         public void AwardExp(int amount)
