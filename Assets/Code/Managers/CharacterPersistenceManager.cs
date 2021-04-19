@@ -41,7 +41,7 @@ namespace RunlingRun.Managers
                 BlinkDistanceStat blinkDistanceStat = new BlinkDistanceStat(1);
                 BlinkChargesStat blinkChargesStat = new BlinkChargesStat(1);
                 loadout.Ability1 = new BlinkAbility(character, new Stat[] { blinkDistanceStat, blinkChargesStat });
-                loadout.Ability2 = new BlinkAbility(character, new Stat[] { blinkDistanceStat, blinkChargesStat });
+                loadout.Ability2 = new ReviveProjectileAbility(character, new Stat[] { });
             }
             else
             {

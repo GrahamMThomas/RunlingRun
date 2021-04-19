@@ -65,6 +65,10 @@ namespace RunlingRun.Character.Abilities
             {
                 return new BlinkAbility(player, attributes.ToArray());
             }
+            else if (sAbility.DisplayName == ReviveProjectileAbility.Name)
+            {
+                return new ReviveProjectileAbility(player, attributes.ToArray());
+            }
 
             throw new UnityException($"Can't find Ability for \"{sAbility.DisplayName}\"");
         }

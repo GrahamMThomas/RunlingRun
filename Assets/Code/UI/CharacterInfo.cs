@@ -65,7 +65,8 @@ namespace RunlingRun.UI
         {
             // Set Image
             Dictionary<System.Type, string> abilityToImageMapping = new Dictionary<System.Type, string>() {
-                {typeof(BlinkAbility), "BlinkIcon"}
+                {typeof(BlinkAbility), "BlinkIcon"},
+                {typeof(ReviveProjectileAbility), "BlankAbility"}
             };
 
             string iconPath = "UI/Abilities/";
