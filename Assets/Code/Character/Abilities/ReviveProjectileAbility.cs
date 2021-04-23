@@ -35,7 +35,7 @@ namespace RunlingRun.Character.Abilities
                 Vector3 target = clickLocation.Value;
                 // Allow projectile to go up slopes
                 target.y += height;
-                projectile.transform.LookAt(target);
+                projectile.GetComponent<ReviveProjectile.ReviveProjectile>().TurnTowardPosition(target);
             }
             yield return null;
         }

@@ -1,10 +1,22 @@
 namespace RunlingRun.ReviveProjectile
 {
+    using Photon.Pun;
     using UnityEngine;
 
-    public class ReviveProjectile : MonoBehaviour
+    public class ReviveProjectile : MonoBehaviourPun
     {
         private float _speed = 10f;
+
+        public void TurnTowardPosition(Vector3 pos)
+        {
+            photonView.RPC("RPCTurnTowardPosition", RpcTarget.All, pos);
+        }
+
+        [PunRPC]
+        private void RPCTurnTowardPosition(Vector3 pos)
+        {
+            transform.LookAt(pos);
+        }
 
         private void FixedUpdate()
         {
