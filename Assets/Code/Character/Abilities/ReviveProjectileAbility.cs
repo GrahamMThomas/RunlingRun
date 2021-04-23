@@ -22,11 +22,16 @@ namespace RunlingRun.Character.Abilities
 
         public override IEnumerator Activate()
         {
-            if (CurrentCharges <= 0)
+            if (IsActive)
             {
-                Debug.Log("On Cooldown...");
                 yield break;
             }
+            if (CurrentCharges <= 0)
+            {
+                yield break;
+            }
+
+            IsActive = true;
 
             Vector3? clickLocation = null;
             MouseController mouseController = GameObject.Find("GameManager").GetComponent<MouseController>();
@@ -44,6 +49,7 @@ namespace RunlingRun.Character.Abilities
                 target.y += height;
                 projectile.GetComponent<ReviveProjectile.ReviveProjectile>().TurnTowardPosition(target);
                 SpendAbilityCharge();
+                IsActive = false;
             }
             yield return null;
         }

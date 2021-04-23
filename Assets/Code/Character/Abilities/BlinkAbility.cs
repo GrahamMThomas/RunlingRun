@@ -43,12 +43,10 @@ namespace RunlingRun.Character.Abilities
             }
             if (IsActive)
             {
-                Debug.Log("Already using blink...");
                 yield break;
             }
             if (CurrentCharges <= 0)
             {
-                Debug.Log("On Cooldown...");
                 yield break;
             }
 
