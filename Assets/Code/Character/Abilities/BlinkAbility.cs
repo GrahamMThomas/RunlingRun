@@ -59,7 +59,7 @@ namespace RunlingRun.Character.Abilities
             if (blinkLocation.HasValue)
             {
                 Debug.Log("Activate Blink!");
-                NavMeshAgent navAgent = _player.GetComponent<NavMeshAgent>();
+                CharacterBehaviour behav = _player.GetComponent<CharacterBehaviour>();
                 Vector3 oldPos = _player.transform.position;
                 Vector3 direction = blinkLocation.Value - oldPos;
                 Vector3 relativeMovement = Vector3.ClampMagnitude(direction, BlinkDistance);
@@ -70,7 +70,7 @@ namespace RunlingRun.Character.Abilities
                 }
                 else
                 {
-                    navAgent.Warp(targetPos);
+                    behav.Teleport(targetPos);
                     GameObject fromEffect = Object.Instantiate(_blinkEffect, oldPos, Quaternion.Euler(90, 0, 0));
                     Object.Destroy(fromEffect, 2f);
                     GameObject toEffect = Object.Instantiate(_blinkEffect, targetPos, Quaternion.Euler(90, 0, 0));

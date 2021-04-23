@@ -68,8 +68,16 @@ namespace RunlingRun.Character
             }
             if (!photonView.IsMine)
             {
-                transform.position = Vector3.MoveTowards(transform.position, _networkLocation, Time.deltaTime * _agent.speed);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, _networkRotation, Time.deltaTime * _agent.angularSpeed);
+                if ((transform.position - _networkLocation).magnitude > 2f)
+                {
+                    transform.position = _networkLocation;
+                    transform.rotation = _networkRotation;
+                }
+                else
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, _networkLocation, Time.deltaTime * _agent.speed);
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, _networkRotation, Time.deltaTime * _agent.angularSpeed);
+                }
             }
         }
 
@@ -155,6 +163,18 @@ namespace RunlingRun.Character
         private void RPCSetSpeed(float speed)
         {
             _agent.speed = speed;
+        }
+
+        public void Teleport(Vector3 pos)
+        {
+            photonView.RPC("RPCTeleported", RpcTarget.All, pos);
+        }
+
+        [PunRPC]
+        private void RPCTeleported(Vector3 pos)
+        {
+            _agent.Warp(pos);
+            transform.position = pos;
         }
 
 
