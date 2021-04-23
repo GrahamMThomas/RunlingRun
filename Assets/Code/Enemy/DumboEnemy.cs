@@ -2,21 +2,33 @@ namespace RunlingRun.Enemy
 {
     using System.Collections;
     using Character;
+    using Photon.Pun;
     using UnityEngine;
 
-    public class DumboEnemy : Enemy
+    public class DumboEnemy : Enemy, IPunObservable
     {
         private Vector3 _moveDirection;
+        private new Rigidbody rigidbody;
+        private Vector3 _networkLocation;
+        private float _networkLag;
 
         private void Awake()
         {
             Vector3 randomDirection = new Vector3(Random.value, 0, Random.value);
             _moveDirection = randomDirection.normalized;
+            rigidbody = GetComponent<Rigidbody>();
         }
 
         public override void Move()
         {
-            transform.Translate(_moveDirection * MoveSpeed * Time.deltaTime, Space.World);
+            if (photonView.IsMine)
+            {
+                transform.Translate(_moveDirection * MoveSpeed * Time.deltaTime, Space.World);
+            }
+            else
+            {
+                transform.position = Vector3.MoveTowards(transform.position, _networkLocation, Time.deltaTime * MoveSpeed);
+            }
         }
 
         private void OnCollisionEnter(Collision other)
@@ -38,6 +50,23 @@ namespace RunlingRun.Enemy
         private void FixedUpdate()
         {
             Move();
+        }
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (stream.IsWriting)
+            {
+                stream.SendNext(rigidbody.position);
+                stream.SendNext(rigidbody.rotation);
+            }
+            else
+            {
+                _networkLocation = (Vector3)stream.ReceiveNext();
+
+                rigidbody.rotation = (Quaternion)stream.ReceiveNext();
+
+                _networkLag = Mathf.Abs((float)(PhotonNetwork.Time - info.SentServerTime));
+            }
         }
     }
 }

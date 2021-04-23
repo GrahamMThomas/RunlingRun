@@ -1,9 +1,10 @@
 namespace RunlingRun.Enemy
 {
     using Character;
+    using Photon.Pun;
     using UnityEngine;
 
-    public abstract class Enemy : MonoBehaviour
+    public abstract class Enemy : MonoBehaviourPun
     {
         public float MoveSpeed = 5f;
 
