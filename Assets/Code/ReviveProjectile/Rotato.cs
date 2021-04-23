@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class Rotato : MonoBehaviour
+namespace RunlingRun.ReviveProjectile
 {
-    // Start is called before the first frame update
-    void Update()
+    using UnityEngine;
+
+    public class Rotato : MonoBehaviour
     {
-        transform.eulerAngles = new Vector3((transform.eulerAngles.x + 5) % 360, 0, 0);
+        private void FixedUpdate()
+        {
+            transform.Rotate(new Vector3(0f, 10f, 0f), Space.Self);
+        }
     }
 }

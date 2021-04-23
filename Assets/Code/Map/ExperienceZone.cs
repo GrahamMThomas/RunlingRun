@@ -2,6 +2,7 @@ namespace RunlingRun.Map
 {
     using System.Collections;
     using System.Collections.Generic;
+    using Photon.Pun;
     using RunlingRun.Character;
     using UnityEngine;
 
@@ -15,8 +16,11 @@ namespace RunlingRun.Map
             {
                 if (!gotPoints.Contains(other.gameObject.name))
                 {
-                    other.gameObject.GetComponent<CharacterBehaviour>().AwardExp(ExpAwarded);
-                    gotPoints.Add(other.gameObject.name);
+                    if (other.gameObject.GetComponent<PhotonView>().IsMine)
+                    {
+                        other.gameObject.GetComponent<CharacterBehaviour>().AwardExp(ExpAwarded);
+                        gotPoints.Add(other.gameObject.name);
+                    }
                 }
             }
         }

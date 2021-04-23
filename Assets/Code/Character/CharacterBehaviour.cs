@@ -74,12 +74,13 @@ namespace RunlingRun.Character
 
         private void OnDestroy()
         {
-            CharacterPersistenceManager.Instance.SaveCharacter(gameObject);
+            if (photonView.IsMine) { CharacterPersistenceManager.Instance.SaveCharacter(gameObject); }
+
         }
 
         private void OnApplicationQuit()
         {
-            CharacterPersistenceManager.Instance.SaveCharacter(gameObject);
+            if (photonView.IsMine) { CharacterPersistenceManager.Instance.SaveCharacter(gameObject); }
         }
 
         // Character Actions --------------------
@@ -92,8 +93,11 @@ namespace RunlingRun.Character
             _agent.isStopped = true;
             GetComponent<Collider>().enabled = false;
             StartCoroutine(PlayDeathEffect());
-            GameObject deathMarker = PhotonNetwork.InstantiateRoomObject("DeathMarker", gameObject.transform.position, Quaternion.identity);
-            deathMarker.GetComponent<DeathMarker.DeathMarker>().SetCharacter(this);
+            if (photonView.IsMine)
+            {
+                GameObject deathMarker = PhotonNetwork.Instantiate("DeathMarker", gameObject.transform.position, Quaternion.identity);
+                deathMarker.GetComponent<DeathMarker.DeathMarker>().SetCharacter(this);
+            }
         }
 
         public void Revive()

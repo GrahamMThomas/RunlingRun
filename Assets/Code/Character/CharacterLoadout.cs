@@ -44,7 +44,7 @@ namespace RunlingRun.Character
         public void LevelUp()
         {
             AvailablePoints += 1;
-            OnLevelUp();
+            OnLevelUp?.Invoke();
         }
 
         // Functions --------------------------

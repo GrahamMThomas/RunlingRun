@@ -21,14 +21,21 @@ namespace RunlingRun.Character.Abilities
 
         public override IEnumerator Activate()
         {
-            Vector3? blinkLocation = null;
+            Vector3? clickLocation = null;
             MouseController mouseController = GameObject.Find("GameManager").GetComponent<MouseController>();
-            yield return _playerMono.StartCoroutine(mouseController.WaitForMouseClickLocation((_blinkLocation) => blinkLocation = _blinkLocation));
+            yield return _playerMono.StartCoroutine(mouseController.WaitForMouseClickLocation((_clickLocation) => clickLocation = _clickLocation));
 
-            if (blinkLocation.HasValue)
+            if (clickLocation.HasValue)
             {
-                GameObject projectile = PhotonNetwork.InstantiateRoomObject("ReviveProjectile", _player.transform.position, _player.transform.rotation);
-                projectile.transform.LookAt(blinkLocation.Value);
+                float height = 1f;
+                // Spawn in front
+                Vector3 spawnLocation = _player.transform.position + _player.transform.forward;
+                spawnLocation.y += height;
+                GameObject projectile = PhotonNetwork.Instantiate("ReviveProjectile", spawnLocation, _player.transform.rotation);
+                Vector3 target = clickLocation.Value;
+                // Allow projectile to go up slopes
+                target.y += height;
+                projectile.transform.LookAt(target);
             }
             yield return null;
         }

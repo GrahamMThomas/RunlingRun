@@ -11,9 +11,9 @@ namespace RunlingRun.ReviveProjectile
             transform.position += transform.forward * Time.deltaTime * _speed;
         }
 
-        private void OnCollisionEnter(Collision other)
+        private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.CompareTag("Wall/EnemyOnly"))
+            if (other.gameObject.CompareTag("Wall/All"))
             {
                 Destroy(gameObject);
             }
