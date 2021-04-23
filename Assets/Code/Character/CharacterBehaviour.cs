@@ -11,7 +11,7 @@ namespace RunlingRun.Character
 
     [RequireComponent(typeof(NavMeshAgent))]
     [RequireComponent(typeof(CharacterLoadout))]
-    public class CharacterBehaviour : MonoBehaviourPun
+    public class CharacterBehaviour : MonoBehaviourPun, IPunObservable
     {
         // Static
         public string Name;
@@ -31,6 +31,10 @@ namespace RunlingRun.Character
         public GameObject CharacterModel;
         private NavMeshAgent _agent;
         private Material _shader;
+
+        // Network Related
+        private Vector3 _networkLocation;
+        private Quaternion _networkRotation;
 
         public void SetProgress(int level, int experience)
         {
@@ -61,6 +65,11 @@ namespace RunlingRun.Character
             if (Input.GetKeyDown(KeyCode.F) && photonView.IsMine)
             {
                 Revive();
+            }
+            if (!photonView.IsMine)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, _networkLocation, Time.deltaTime * _agent.speed);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, _networkRotation, Time.deltaTime * _agent.angularSpeed);
             }
         }
 
@@ -120,6 +129,34 @@ namespace RunlingRun.Character
                 GetComponent<CharacterLoadout>().LevelUp();
             }
         }
+
+        // Network Sync
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (stream.IsWriting)
+            {
+                stream.SendNext(transform.position);
+                stream.SendNext(transform.rotation);
+            }
+            else
+            {
+                _networkLocation = (Vector3)stream.ReceiveNext();
+                _networkRotation = (Quaternion)stream.ReceiveNext();
+            }
+        }
+
+        public void SetSpeed(float speed)
+        {
+            photonView.RPC("RPCSetSpeed", RpcTarget.All, speed);
+        }
+
+        [PunRPC]
+        private void RPCSetSpeed(float speed)
+        {
+            _agent.speed = speed;
+        }
+
 
         // Helper Methods
 

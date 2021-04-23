@@ -958,6 +958,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 732697379348856063}
   - {fileID: 4147410636756103370}
+  - {fileID: 2886146985384549906}
   sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -994,8 +995,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
+  m_SynchronizePosition: 0
+  m_SynchronizeRotation: 0
   m_SynchronizeScale: 0
   m_UseLocal: 1
 --- !u!95 &7552617315467801822

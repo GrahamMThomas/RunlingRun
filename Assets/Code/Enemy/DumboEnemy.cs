@@ -8,15 +8,12 @@ namespace RunlingRun.Enemy
     public class DumboEnemy : Enemy, IPunObservable
     {
         private Vector3 _moveDirection;
-        private new Rigidbody rigidbody;
         private Vector3 _networkLocation;
-        private float _networkLag;
 
         private void Awake()
         {
             Vector3 randomDirection = new Vector3(Random.value, 0, Random.value);
             _moveDirection = randomDirection.normalized;
-            rigidbody = GetComponent<Rigidbody>();
         }
 
         public override void Move()
@@ -56,16 +53,14 @@ namespace RunlingRun.Enemy
         {
             if (stream.IsWriting)
             {
-                stream.SendNext(rigidbody.position);
-                stream.SendNext(rigidbody.rotation);
+                stream.SendNext(transform.position);
+                stream.SendNext(transform.rotation);
             }
             else
             {
                 _networkLocation = (Vector3)stream.ReceiveNext();
 
-                rigidbody.rotation = (Quaternion)stream.ReceiveNext();
-
-                _networkLag = Mathf.Abs((float)(PhotonNetwork.Time - info.SentServerTime));
+                transform.rotation = (Quaternion)stream.ReceiveNext();
             }
         }
     }
