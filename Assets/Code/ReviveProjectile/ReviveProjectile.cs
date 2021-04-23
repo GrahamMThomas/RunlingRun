@@ -1,5 +1,6 @@
 namespace RunlingRun.ReviveProjectile
 {
+    using Character;
     using Photon.Pun;
     using UnityEngine;
 

@@ -17,10 +17,17 @@ namespace RunlingRun.Character.Abilities
         public ReviveProjectileAbility(GameObject player, Stat[] attributes) : base(player, attributes)
         {
             _playerMono = player.GetComponent<MonoBehaviourPun>();
+            Cooldown = 15f;
         }
 
         public override IEnumerator Activate()
         {
+            if (CurrentCharges <= 0)
+            {
+                Debug.Log("On Cooldown...");
+                yield break;
+            }
+
             Vector3? clickLocation = null;
             MouseController mouseController = GameObject.Find("GameManager").GetComponent<MouseController>();
             yield return _playerMono.StartCoroutine(mouseController.WaitForMouseClickLocation((_clickLocation) => clickLocation = _clickLocation));
@@ -36,6 +43,7 @@ namespace RunlingRun.Character.Abilities
                 // Allow projectile to go up slopes
                 target.y += height;
                 projectile.GetComponent<ReviveProjectile.ReviveProjectile>().TurnTowardPosition(target);
+                SpendAbilityCharge();
             }
             yield return null;
         }

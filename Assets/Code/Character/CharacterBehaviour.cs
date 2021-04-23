@@ -91,7 +91,7 @@ namespace RunlingRun.Character
             isDowned = true;
             _agent.ResetPath();
             _agent.isStopped = true;
-            GetComponent<Collider>().enabled = false;
+            GetComponent<Collider>().isTrigger = true;
             StartCoroutine(PlayDeathEffect());
             if (photonView.IsMine)
             {
@@ -103,7 +103,7 @@ namespace RunlingRun.Character
         public void Revive()
         {
             _agent.isStopped = false;
-            GetComponent<Collider>().enabled = true;
+            GetComponent<Collider>().isTrigger = false;
             isDowned = false;
             _shader.SetFloat("PercentDisintegrated", 0f);
             OnRevive?.Invoke();

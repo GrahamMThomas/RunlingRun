@@ -10,9 +10,10 @@ namespace RunlingRun.ReviveProjectile
             if (other.gameObject.CompareTag("PlayerCharacter"))
             {
                 GameObject _player = other.gameObject;
-                if (_player.GetComponent<CharacterBehaviour>().isDowned)
+                CharacterBehaviour behav = _player.GetComponent<CharacterBehaviour>();
+                if (behav.isDowned)
                 {
-                    Debug.Log("Reviving!");
+                    behav.Revive();
                 }
             }
         }
