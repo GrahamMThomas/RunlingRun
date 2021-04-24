@@ -1,6 +1,7 @@
 namespace RunlingRun.Character.Abilities
 {
     using System.Collections;
+    using Photon.Pun;
     using RunlingRun.Managers;
     using RunlingRun.Player.Controllers;
     using RunlingRun.Utilities;
@@ -15,7 +16,6 @@ namespace RunlingRun.Character.Abilities
         public float BlinkDistance;
         private readonly MonoBehaviour _playerMono;
         private readonly CharacterBehaviour _character;
-        private readonly GameObject _blinkEffect;
 
         private const float MaxBlinkAheadDistance = 20f;
 
@@ -30,8 +30,6 @@ namespace RunlingRun.Character.Abilities
 
             _character = player.GetComponent<CharacterBehaviour>();
             _playerMono = player.GetComponent<MonoBehaviour>();
-
-            _blinkEffect = (GameObject)Resources.Load("ParticleSystems/Blink");
         }
 
         public override IEnumerator Activate()
@@ -71,10 +69,8 @@ namespace RunlingRun.Character.Abilities
                 else
                 {
                     behav.Teleport(targetPos);
-                    GameObject fromEffect = Object.Instantiate(_blinkEffect, oldPos, Quaternion.Euler(90, 0, 0));
-                    Object.Destroy(fromEffect, 2f);
-                    GameObject toEffect = Object.Instantiate(_blinkEffect, targetPos, Quaternion.Euler(90, 0, 0));
-                    Object.Destroy(toEffect, 2f);
+                    GameObject fromEffect = PhotonNetwork.Instantiate("ParticleSystems/Blink", oldPos, Quaternion.Euler(0, 0, 0));
+                    GameObject toEffect = PhotonNetwork.Instantiate("ParticleSystems/Blink", targetPos, Quaternion.Euler(0, 0, 0));
                     SpendAbilityCharge();
                 }
             }

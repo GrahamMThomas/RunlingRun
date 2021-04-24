@@ -25,13 +25,16 @@ namespace RunlingRun.Player
 
         private void Update()
         {
-            if (_navAgent.velocity.magnitude < 0.1f)
+            if (photonView.IsMine)
             {
-                _animator.SetBool("isMoving", false);
-            }
-            else
-            {
-                _animator.SetBool("isMoving", true);
+                if (_navAgent.velocity.magnitude < 0.1f)
+                {
+                    _animator.SetBool("isMoving", false);
+                }
+                else
+                {
+                    _animator.SetBool("isMoving", true);
+                }
             }
         }
 
