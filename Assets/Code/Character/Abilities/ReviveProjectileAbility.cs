@@ -12,7 +12,7 @@ namespace RunlingRun.Character.Abilities
         public const string Name = "Revive Shot";
         public override string DisplayName { get { return Name; } }
 
-        private MonoBehaviourPun _playerMono;
+        private readonly MonoBehaviourPun _playerMono;
 
         public ReviveProjectileAbility(GameObject player, Stat[] attributes) : base(player, attributes)
         {
@@ -22,14 +22,7 @@ namespace RunlingRun.Character.Abilities
 
         public override IEnumerator Activate()
         {
-            if (IsActive)
-            {
-                yield break;
-            }
-            if (CurrentCharges <= 0)
-            {
-                yield break;
-            }
+            if (!CanCast()) { yield break; }
 
             IsActive = true;
 
@@ -49,9 +42,9 @@ namespace RunlingRun.Character.Abilities
                 target.y += height;
                 projectile.GetComponent<ReviveProjectile.ReviveProjectile>().TurnTowardPosition(target);
                 SpendAbilityCharge();
-                IsActive = false;
             }
-            yield return null;
+
+            IsActive = false;
         }
     }
 }

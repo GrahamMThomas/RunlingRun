@@ -1,10 +1,13 @@
 + Make a new level
 + Make a new level
 + Make Camera rotation
-+ Don't use abilities while dead
 + Blink Icon Sucks
 
-+ UI Clipping on New character list
+
++ Add Options Menu
++ Make UI Scalable
++ Make Start menu prettier
+
 + Multiple characters names confusing
 + Missing Ability icon
 + Name icons on player
@@ -13,9 +16,6 @@
 + Need indicator for ability prompt
 + Add quickcast
 + Add hotkey to to ability icons
-+ Ensure death means death
-+ Sometimes dead people can move
-+ Make death a network call
 + Cancel ability
 + Going up one ramp causes players to move slow
 + Ramps are fucked
@@ -24,3 +24,5 @@
 + Death Count
 + Holding down right click for constant movement
 + Available points show
+
+# Postpone

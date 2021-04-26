@@ -33,6 +33,15 @@ namespace RunlingRun.Character.Abilities
             }
         }
 
+        public bool CanCast()
+        {
+            if (!IsUnlocked) { return false; }
+            if (IsActive) { return false; }
+            if (CurrentCharges <= 0) { return false; }
+            if (_player.GetComponent<CharacterBehaviour>().isDowned) { return false; }
+            return true;
+        }
+
         private IEnumerator StartCooldown()
         {
             _isCoolingDown = true;

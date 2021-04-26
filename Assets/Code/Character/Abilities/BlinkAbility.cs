@@ -34,19 +34,7 @@ namespace RunlingRun.Character.Abilities
 
         public override IEnumerator Activate()
         {
-            if (!IsUnlocked)
-            {
-                Debug.Log("Ability is not Unlocked");
-                yield break;
-            }
-            if (IsActive)
-            {
-                yield break;
-            }
-            if (CurrentCharges <= 0)
-            {
-                yield break;
-            }
+            if (!CanCast()) { yield break; }
 
             IsActive = true;
 

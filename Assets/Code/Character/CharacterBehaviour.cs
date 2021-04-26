@@ -104,6 +104,12 @@ namespace RunlingRun.Character
 
         public void GetRekted()
         {
+            photonView.RPC("RPCGetRekted", RpcTarget.All);
+        }
+
+        [PunRPC]
+        private void RPCGetRekted()
+        {
             if (isDowned) { return; }
             isDowned = true;
             _agent.ResetPath();
@@ -118,6 +124,12 @@ namespace RunlingRun.Character
         }
 
         public void Revive()
+        {
+            photonView.RPC("RPCRevive", RpcTarget.All);
+        }
+
+        [PunRPC]
+        private void RPCRevive()
         {
             _agent.isStopped = false;
             GetComponent<Collider>().isTrigger = false;
