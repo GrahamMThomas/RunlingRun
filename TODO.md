@@ -9,8 +9,6 @@
 + Make Start menu prettier
 
 + Multiple characters names confusing
-+ Missing Ability icon
-+ Name icons on player
 + Room code
 + Player list
 + Need indicator for ability prompt

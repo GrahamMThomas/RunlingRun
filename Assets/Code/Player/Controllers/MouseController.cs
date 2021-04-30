@@ -3,6 +3,7 @@ namespace RunlingRun.Player.Controllers
     using System.Collections;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using Managers;
     using UnityEngine;
     using UnityEngine.EventSystems;
 
@@ -12,6 +13,8 @@ namespace RunlingRun.Player.Controllers
         public ParticleSystem ClickOnMapEffect;
         public event SetTargetPosition ClickedOnMap;
         private Vector3? _abilityTarget;
+
+        private bool _getLocationForQuickCast = false;
 
         // Special management for scene view UI clicking        
 #pragma warning disable IDE0044
@@ -40,9 +43,10 @@ namespace RunlingRun.Player.Controllers
                     ClickedOnMap?.Invoke(clickLocation.Value);
                 }
             }
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) || _getLocationForQuickCast)
             {
                 _abilityTarget = GetMouseClickLocation();
+                _getLocationForQuickCast = false;
             }
         }
 
@@ -65,6 +69,7 @@ namespace RunlingRun.Player.Controllers
         public IEnumerator WaitForMouseClickLocation(System.Action<Vector3?> callback)
         {
             _abilityTarget = null;
+            if (OptionsManager.Instance.QuickCast) { _getLocationForQuickCast = true; }
             yield return new WaitUntil(() => _abilityTarget != null);
             callback(_abilityTarget);
             _abilityTarget = null;
